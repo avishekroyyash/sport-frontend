@@ -25,21 +25,21 @@ export function NavberDropDrown() {
           </Dropdown.Item>
 
           <Dropdown.Item id="new" textValue="New">
-            <Label className="flex justify-center items-center gap-2 text-xl font-semibold"> <CiBookmark />My Bookings</Label>
+            <Label className="flex justify-center items-center gap-1 text-lg font-semibold"> <CiBookmark />My Bookings</Label>
           </Dropdown.Item>
 
           <Dropdown.Item id="open" textValue="Open">
-            <Label  className="flex justify-center items-center gap-2 text-xl font-semibold"> <LiaAddressCard />Add Facility </Label>
+            <Label  className="flex justify-center items-center gap-1 text-lg font-semibold"> <LiaAddressCard />Add Facility </Label>
            
           </Dropdown.Item>
 
           <Dropdown.Item id="save" textValue="Save">
-            <Label  className="flex justify-center items-center gap-2 text-xl font-semibold"><MdOutlineManageAccounts /> Manage My Facilities</Label>
+            <Label  className="flex justify-center items-center gap-1 text-lg font-semibold"><MdOutlineManageAccounts /> Manage My Facilities</Label>
         
           </Dropdown.Item>
 
           <Dropdown.Item  >
-            <Label  className="flex justify-center items-center gap-1 text-xl font-semibold bg-green-800 text-white w-full p-2 rounded-2xl"><CiLogout />Logout</Label>
+            <Label  className="flex justify-center items-center gap-1 text-lg font-semibold bg-green-800 text-white w-full p-1 rounded-2xl"><CiLogout />Logout</Label>
            
           </Dropdown.Item>
 
