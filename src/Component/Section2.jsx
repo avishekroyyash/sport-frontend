@@ -8,7 +8,7 @@ import com5 from '../../public/company-5.png' ;
 import com6 from '../../public/company-6.png' ;
 const Section2 = () => {
     return (
-       <div className='border-4 rounded-2xl p-5 my-5'>
+       <div className='p-5 my-5'>
         <h1 className='text-4xl font-bold '>Trusted By Our Partners</h1>
         <p className='font-semibold text-gray-700 my-3'>We are proud to collaborate with organizations and brands that share our vision of making sports more accessible and enjoyable for everyone.</p>
         <div className='flex bg-white justify-center items-center '>
