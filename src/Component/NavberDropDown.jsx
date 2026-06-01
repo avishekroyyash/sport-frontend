@@ -15,7 +15,7 @@ export function NavberDropDrown() {
      <Image className="rounded-full bg-green-600  " src={userimg} alt="userimg" width={50} height={50}></Image> 
      <h1 className="bg-green-600 p-3 rounded-r-2xl font-semibold text-white px-10 ">User Name</h1>
       </Button>
-      <Dropdown.Popover className='bg-green-200 border-2 border-green-600 my-3 ml-7'>
+      <Dropdown.Popover className=' border-2 border-green-600 my-3 ml-10'>
         <Dropdown.Menu  onAction={(key) => console.log(`Selected: ${key}`)}>
              <Dropdown.Item   id="email" textValue="New">
             <Label className="font-medium flex justify-center items-center gap-1 text-gray-600  "> <MdOutlineMail />Avishek roy yash @ gamil .com</Label>
