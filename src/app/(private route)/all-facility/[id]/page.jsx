@@ -1,130 +1,187 @@
-import Image from "next/image";
-import { Check } from "@gravity-ui/icons";
+"use client";
+
 import {
-  Header,
-  ListBox,
-  Select,
-  Separator,
+  Calendar,
+  DateField,
+  DatePicker,
   Button,
-  Description,
   FieldError,
   Form,
   Input,
   Label,
   TextField,
-  InputGroup,
-  TextArea,
 } from "@heroui/react";
+
+import Image from "next/image";
+import { Check } from "@gravity-ui/icons";
 import React from "react";
 import detailsimg from "../../../../../public/sportnest3.jpg";
 
 const BookingDetaisPage = () => {
   return (
-    <div className="flex container mx-auto">
-      {/* this is details page */}
-      <div>
-        <Image src={detailsimg} alt="image" width={350} height={350}></Image>
-        <h2 className="text-2xl font-bold text-gray-800">
-          Sylhet Football Arena
-        </h2>
-        <p className="mt-1 text-gray-500">Tilagor, Sylhet</p>
-        <div className="flex justify-between">
-          <span>Capacity</span>
-          <span className="font-semibold">22 Players</span>
+    <div className="container mx-auto my-12 grid grid-cols-1 lg:grid-cols-2 gap-10 px-4">
+
+      {/* ================= LEFT SIDE DETAILS ================= */}
+      <div className="rounded-3xl border border-green-200 bg-gradient-to-b from-green-50 to-white p-6 shadow-sm space-y-6">
+
+        {/* Image */}
+        <div className="rounded-2xl overflow-hidden border border-green-200 shadow-sm">
+          <Image
+            src={detailsimg}
+            alt="facility"
+            width={500}
+            height={350}
+            className="w-full object-cover"
+          />
         </div>
 
-        <div className="flex justify-between">
-          <span>Available Slots</span>
-          <span className="font-semibold text-green-600">3 Slots</span>
-        </div>
-        <button>price</button>
-        <p>Description about Faciliy</p>
-        <p>facility catagory</p>
-      </div>
-      {/* this is booking form */}
-      <div>
-      {/* i can add any tag in this place */}
+        {/* Title */}
         <div>
-          <Form className="p-8 w-120 md:p-10 space-y-6">
-            {/* Basic Information */}
-           
-              <h2 className="mb-5 text-xl font-bold text-gray-800">
-                Booking Facility
-              </h2>
-
-              {/* Facility Name */}
-              <TextField isRequired name="facility-name">
-                <Label className="font-semibold text-gray-700">
-                  Facility Name
-                </Label>
-                <Input
-                  placeholder="Enter facility name"
-                  className="
-                                      p-3 border-2 border-green-500
-                                     focus-within:border-green-500
-                                     focus-within:ring-green-500
-                                     data-[focused=true]:border-green-500
-                                      "
-                />
-              </TextField>
-
-              {/* Facility Type */}
-           
-
-            {/* Time Slot & Hours */}
-
-            <TextField isRequired name="time-slot">
-              <Label className="font-semibold text-gray-700">
-                Time Slot
-              </Label>
-              <Input
-                placeholder="3 Slots"
-                className="
-                                      p-3 border-2 border-green-500
-                                     focus-within:border-green-500
-                                     focus-within:ring-green-500
-                                     data-[focused=true]:border-green-500
-                                      "
-              />
-            </TextField>
-
-            <TextField isRequired name="hours">
-              <Label className="font-semibold text-gray-700">Hours</Label>
-              <Input
-                placeholder="22 Players"
-                className="
-                                      p-3 border-2 border-green-500
-                                     focus-within:border-green-500
-                                     focus-within:ring-green-500
-                                     data-[focused=true]:border-green-500
-                                      "
-              />
-            </TextField>
-
-            {/* Submit Button */}
-            <Button
-              type="submit"
-              className="
-                              w-full
-                              rounded-xl
-                              bg-gradient-to-r
-                              from-green-600
-                              to-emerald-700
-                              py-7
-                              text-lg
-                              font-bold
-                              text-white
-                              transition-all
-                              duration-300
-                              hover:scale-[1.02]
-                              hover:shadow-lg
-                            "
-            >
-              <Check />
-              Add Facility
-            </Button>
-          </Form>
+          <h2 className="text-3xl font-bold text-green-900">
+            Sylhet Football Arena
+          </h2>
+          <p className="text-gray-600 mt-1">📍 Tilagor, Sylhet</p>
         </div>
+
+        {/* Details Card */}
+        <div className="rounded-2xl bg-white border border-green-100 p-5 space-y-4 shadow-sm">
+
+          <div className="flex justify-between border-b pb-3">
+            <span className="text-gray-600 font-medium">Capacity</span>
+            <span className="font-bold text-green-700">22 Players</span>
+          </div>
+
+          <div className="flex justify-between border-b pb-3">
+            <span className="text-gray-600 font-medium">Available Slots</span>
+            <span className="font-bold text-green-700">3 Slots</span>
+          </div>
+
+          <div className="flex justify-between items-center">
+            <span className="text-gray-600 font-medium">Category</span>
+            <span className="bg-green-600 text-white px-4 py-1 rounded-full text-sm font-semibold">
+              Football
+            </span>
+          </div>
+
+        </div>
+
+        {/* Price Box */}
+        <div className="rounded-2xl bg-green-100 border border-green-200 p-5 flex justify-between items-center">
+          <span className="text-green-900 font-semibold">Price per Hour</span>
+          <span className="text-2xl font-bold text-green-700">৳950</span>
+        </div>
+
+        {/* Description */}
+        <div className="text-gray-600 leading-7">
+          Premium football facility with high-quality turf, professional lighting,
+          and modern dressing rooms designed for players and tournaments.
+        </div>
+
+      </div>
+
+      {/* ================= RIGHT SIDE FORM ================= */}
+      <div className="rounded-3xl border border-green-200 bg-white shadow-sm p-6 lg:p-10">
+
+        <Form className="space-y-6">
+
+          <h2 className="text-3xl font-bold text-green-900 border-b pb-3">
+            Booking Facility
+          </h2>
+
+          {/* Facility Name */}
+          <TextField isRequired name="facility-name">
+            <Label className="text-gray-700 font-semibold">
+              Facility Name
+            </Label>
+            <Input
+              placeholder="Enter facility name"
+              className="p-3 border border-green-300 rounded-xl focus:border-green-600 focus:ring-green-200"
+            />
+            <FieldError />
+          </TextField>
+
+          {/* Date Picker (Enhanced Green Focus) */}
+          <div className="rounded-2xl border border-green-200 bg-green-50 p-4">
+            <Label className="text-green-800 font-semibold">
+              Booking Date
+            </Label>
+
+            <DatePicker className="w-full mt-2" name="date">
+              <DateField.Group fullWidth>
+                <DateField.Input>
+                  {(segment) => (
+                    <DateField.Segment
+                      segment={segment}
+                      className="text-green-700"
+                    />
+                  )}
+                </DateField.Input>
+
+                <DateField.Suffix>
+                  <DatePicker.Trigger />
+                </DateField.Suffix>
+              </DateField.Group>
+
+              <DatePicker.Popover>
+                <Calendar aria-label="Booking calendar" />
+              </DatePicker.Popover>
+            </DatePicker>
+          </div>
+
+          {/* Time Slot */}
+          <TextField isRequired name="time-slot">
+            <Label className="text-gray-700 font-semibold">
+              Time Slot
+            </Label>
+            <Input
+              placeholder="e.g. 10:00 AM - 11:00 AM"
+              className="p-3 border border-green-300 rounded-xl focus:border-green-600"
+            />
+          </TextField>
+
+          {/* Hours */}
+          <TextField isRequired name="hours">
+            <Label className="text-gray-700 font-semibold">Hours</Label>
+            <Input
+              placeholder="Enter hours"
+              className="p-3 border border-green-300 rounded-xl focus:border-green-600"
+            />
+          </TextField>
+
+          {/* Price Summary (More Premium) */}
+          <div className="rounded-2xl bg-gradient-to-r from-green-50 to-white border border-green-200 p-5 space-y-3">
+
+            <div className="flex justify-between text-gray-700">
+              <span>Rate per hour</span>
+              <span className="font-semibold">৳80</span>
+            </div>
+
+            <div className="flex justify-between text-gray-700">
+              <span>Duration</span>
+              <span className="font-semibold">12 Hours</span>
+            </div>
+
+            <div className="border-t pt-3 flex justify-between">
+              <span className="text-green-900 font-bold text-lg">
+                Total Price
+              </span>
+              <span className="text-green-700 font-bold text-xl">
+                ৳950
+              </span>
+            </div>
+
+          </div>
+
+          {/* Submit Button */}
+          <Button
+            type="submit"
+            className="w-full rounded-xl bg-green-600 hover:bg-green-700 py-6 text-white font-bold text-lg shadow-md"
+          >
+            <Check />
+            Confirm Booking
+          </Button>
+
+        </Form>
       </div>
     </div>
   );

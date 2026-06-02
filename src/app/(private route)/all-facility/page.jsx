@@ -5,7 +5,7 @@ import BookingDetaisPage from './[id]/page';
 const AllFacility = () => {
     return (
         <div>
-            <BookingDetaisPage></BookingDetaisPage>
+            {/* <BookingDetaisPage></BookingDetaisPage> */}
             {/* <FacilityCard></FacilityCard> */}
         </div>
     );
