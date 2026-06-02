@@ -13,7 +13,7 @@ export function NavberDropDrown() {
     <Dropdown>
       <Button aria-label="Menu" variant="" className='flex justify-center items-center'>
         <Image className="rounded-full bg-green-600  " src={userimg} alt="userimg" width={50} height={50}></Image>
-        <h1 className="bg-green-600 p-3 rounded-r-2xl font-semibold text-white px-10 ">User Name</h1>
+        <h1 className=" bg-gradient-to-r from-green-600 to-emerald-700 text-center p-3 rounded-r-2xl font-semibold text-white px-10 ">User Name</h1>
       </Button>
       <Dropdown.Popover className=' border-2 border-green-600 my-3 ml-10'>
         <Dropdown.Menu onAction={(key) => console.log(`Selected: ${key}`)}>
@@ -39,7 +39,7 @@ export function NavberDropDrown() {
           </Dropdown.Item>
 
           <Dropdown.Item  >
-            <Label className="flex justify-center items-center gap-1 text-lg font-semibold bg-green-800 text-white w-full p-1 rounded-2xl"><CiLogout />Logout</Label>
+            <Label className="flex justify-center items-center gap-1 text-lg font-semibold text-white w-full p-1 rounded-2xl bg-gradient-to-r from-green-600 to-emerald-700 "><CiLogout />Logout</Label>
 
           </Dropdown.Item>
 
