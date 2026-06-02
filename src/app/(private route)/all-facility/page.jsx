@@ -6,7 +6,7 @@ const AllFacility = () => {
     return (
         <div>
             <BookingDetaisPage></BookingDetaisPage>
-            <FacilityCard></FacilityCard>
+            {/* <FacilityCard></FacilityCard> */}
         </div>
     );
 };
