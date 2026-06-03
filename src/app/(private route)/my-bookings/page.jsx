@@ -1,49 +1,86 @@
-import {Button, Card, CloseButton} from "@heroui/react";
 import Image from "next/image";
-import React from 'react';
-import testpic from '../../../../public/all-sport-element.jpg'
+import React from "react";
+import testpic from "../../../../public/all-sport-element.jpg";
 
 const MyBookingsPage = () => {
-    return (
-        <div>
-             <Card className="container mx-auto items-stretch md:flex-row">
-      <div className="relative h-[140px] w-full shrink-0 overflow-hidden rounded-2xl sm:h-[120px] sm:w-[120px]">
-
-       <Image 
-       className="object-cover"
-       src={testpic}
-        alt='image1'
-         fill >
-       </Image>
-       
-        {/* <img
-          alt="Cherries"
-          className="pointer-events-none absolute inset-0 h-full w-full scale-125 object-cover select-none"
-          loading="lazy"
-          src="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/cherries.jpeg"
-        /> */}
-      </div>
-      <div className="flex flex-1 flex-col gap-3">
-        <Card.Header className="gap-1">
-          <Card.Title className="pr-8">Become an ACME Creator!</Card.Title>
-          <Card.Description>
-            Lorem ipsum dolor sit amet consectetur. Sed arcu donec id aliquam dolor sed amet
-            faucibus etiam.
-          </Card.Description>
-       
-        </Card.Header>
-        <Card.Footer className="mt-auto flex w-full flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex flex-col">
-            <span className="text-sm font-medium text-foreground">Only 10 spots</span>
-            <span className="text-xs text-muted">Submission ends Oct 10.</span>
-                <Button className="w-full sm:w-auto">Cancle Book</Button>
-          </div>
-         
-        </Card.Footer>
-      </div>
-    </Card>
+  return (
+    <div className="container mx-auto p-4">
+      <div className="flex flex-col md:flex-row items-center gap-10 rounded-3xl border border-green-100 bg-white p-5 shadow-lg hover:shadow-xl border-2">
+        
+        {/* Image */}
+        <div className="relative overflow-hidden rounded-2xl">
+          <Image
+            src={testpic}
+            alt="Facility Image"
+            width={220}
+            height={180}
+            className="h-[180px] w-[220px] object-cover"
+          />
         </div>
-    );
+
+        {/* Content */}
+        <div className="flex flex-col space-y-4">
+          
+          {/* Header */}
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between">
+            <div>
+              <h1 className="text-2xl font-bold text-green-700">
+                Sylhet Sports Arena
+              </h1>
+              <p className="text-sm text-gray-500">
+                Premium Indoor Sports Facility
+              </p>
+            </div>
+
+            <span className="mt-2 w-fit rounded-full bg-green-100 px-4 py-1 text-sm font-semibold text-green-700 md:mt-0">
+             Pending
+            </span>
+          </div>
+
+          {/* Booking Info */}
+          <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+            <div className="rounded-xl bg-green-50 p-3">
+              <p className="text-xs text-gray-500">Booking Date</p>
+              <h2 className="font-semibold text-gray-800">
+                15 June 2026
+              </h2>
+            </div>
+
+            <div className="rounded-xl bg-green-50 p-3">
+              <p className="text-xs text-gray-500">Time Slot</p>
+              <h2 className="font-semibold text-gray-800">
+                04:00 PM - 06:00 PM
+              </h2>
+            </div>
+
+            <div className="rounded-xl bg-green-50 p-3">
+              <p className="text-xs text-gray-500">Hours</p>
+              <h2 className="font-semibold text-gray-800">2 Hours</h2>
+            </div>
+
+            <div className="rounded-xl bg-green-50 p-3">
+              <p className="text-xs text-gray-500">Price</p>
+              <h2 className="font-semibold text-green-700">$40</h2>
+            </div>
+          </div>
+
+          {/* Description */}
+          <p className="text-sm text-gray-600">
+            Enjoy a premium sports experience with world-class facilities,
+            modern equipment, and a comfortable environment for players and
+            teams.
+          </p>
+        </div>
+
+        {/* Delete Button */}
+        <div>
+          <button className="rounded-xl bg-red-500 px-5 ml-35 py-3 font-medium text-white hover:bg-red-600">
+            Delete Booking
+          </button>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default MyBookingsPage;
