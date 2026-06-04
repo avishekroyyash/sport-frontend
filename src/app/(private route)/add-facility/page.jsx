@@ -8,15 +8,11 @@ import { useState } from "react";
 const AddFacility = () => {
     const [isVisible, setIsVisible] = useState(false);
 
-  const onSubmit = (e) => {
+  const handleAddFacility = (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-
-    // Convert FormData to plain object
-    formData.forEach((value, key) => {
-      data[key] = value.toString();
-    });
-    alert(`Form submitted with: ${JSON.stringify(data, null, 2)}`);
+    const addData = Object.fromEntries(formData.entries())
+    console.log(addData,'this is add data from add-facility ')
   };
 
     return (
@@ -24,7 +20,7 @@ const AddFacility = () => {
   <div className="max-w-5xl mx-auto overflow-hidden rounded-3xl bg-white shadow-2xl">
 
     {/* Header */}
-    <div className="bg-gradient-to-r from-green-600 to-emerald-700 px-8 py-12 text-center">
+    <div className="bg-linear-to-r from-green-600 to-emerald-700 px-8 py-12 text-center">
       <h1 className="text-4xl font-bold text-white">
         Add New Facility
       </h1>
@@ -35,7 +31,7 @@ const AddFacility = () => {
 
     {/* Form Body */}
     <Form
-      onSubmit={onSubmit}
+      onSubmit={handleAddFacility}
       className="p-8 md:p-10 space-y-6"
     >
       {/* Basic Information */}
@@ -46,7 +42,7 @@ const AddFacility = () => {
 
         <div className="grid gap-6 md:grid-cols-2">
           {/* Facility Name */}
-          <TextField isRequired name="facility-name">
+          <TextField isRequired name="facilityName">
             <Label className="font-semibold text-gray-700">
               Facility Name
             </Label>
@@ -63,7 +59,7 @@ const AddFacility = () => {
 
           {/* Facility Type */}
           <Select
-            name="facility-type"
+            name="facilityType"
             placeholder="Select facility type"
           >
             <Label className="font-semibold text-gray-700">
@@ -82,27 +78,27 @@ const AddFacility = () => {
 
             <Select.Popover>
               <ListBox>
-                <ListBox.Item id="football">
+                <ListBox.Item id="Football" >
                   Football
                 </ListBox.Item>
 
-                <ListBox.Item id="cricket">
+                <ListBox.Item id="Cricket">
                   Cricket
                 </ListBox.Item>
 
-                <ListBox.Item id="basketball">
+                <ListBox.Item id="Basketball">
                   Basketball
                 </ListBox.Item>
 
-                <ListBox.Item id="badminton">
+                <ListBox.Item id="Badminton">
                   Badminton
                 </ListBox.Item>
 
-                <ListBox.Item id="table-tennis">
+                <ListBox.Item id="Table-tennis">
                   Table Tennis
                 </ListBox.Item>
 
-                <ListBox.Item id="rugby">
+                <ListBox.Item id="Rugby">
                   Rugby
                 </ListBox.Item>
               </ListBox>
@@ -128,7 +124,7 @@ const AddFacility = () => {
           />
         </TextField>
 
-        <TextField isRequired name="price-per-hour">
+        <TextField isRequired name="pricePerHour">
           <Label className="font-semibold text-gray-700">
             Price Per Hour
           </Label>
@@ -161,7 +157,7 @@ const AddFacility = () => {
           />
         </TextField>
 
-        <TextField isRequired name="available-slots">
+        <TextField isRequired name="availableTimeSlots">
           <Label className="font-semibold text-gray-700">
             Available Slots
           </Label>
@@ -216,7 +212,7 @@ const AddFacility = () => {
         className="
           w-full
           rounded-xl
-          bg-gradient-to-r
+          bg-linear-to-r
           from-green-600
           to-emerald-700
           py-7

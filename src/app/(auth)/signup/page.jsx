@@ -1,8 +1,6 @@
 "use client";
-import { Check } from "@gravity-ui/icons";
 import {
   Button,
-  Description,
   FieldError,
   Form,
   Input,
@@ -14,19 +12,41 @@ import { Eye, EyeSlash } from "@gravity-ui/icons";
 import { useState } from "react";
 import regpic from "../../../../public/register1.webp";
 import Image from "next/image";
+import Link from "next/link";
+import { MdOutlineCreate, MdOutlineDriveFileRenameOutline, MdOutlineSportsCricket } from "react-icons/md";
+import { FcGoogle } from "react-icons/fc";
+import { authClient } from "@/lib/auth-client";
+import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
+
 
 const ResisterPage = () => {
+  const router = useRouter()
   const [isVisible, setIsVisible] = useState(false);
 
-  const onSubmit = (e) => {
+  const handleResister =async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-
-    // Convert FormData to plain object
-    formData.forEach((value, key) => {
-      data[key] = value.toString();
-    });
-    alert(`Form submitted with: ${JSON.stringify(data, null, 2)}`);
+    const ResisterData = Object.fromEntries(formData.entries())
+    // console.log(ResisterData,'this is resister data ')
+   
+    const { data, error } = await authClient.signUp.email({
+    name: ResisterData.name, 
+    email: ResisterData.email, 
+    password: ResisterData.password , 
+    image: ResisterData.image,
+    callbackURL: "/",
+    });    
+    // console.log('DATA',data)
+    //  console.log('ERRor',error)
+   if(!error){
+  toast.success("Resister is Successfully Complete")
+   router.push('/login')
+   }
+   else{
+    toast.error(`${error.message}`)
+   }
+    
   };
 
   return (
@@ -35,7 +55,7 @@ const ResisterPage = () => {
         {/* picture fiied */}
         <div>
           <Image
-            className="min-h-[650px] rounded-2xl"
+            className="min-h-162.5 rounded-2xl"
             src={regpic}
             alt="register-pic"
             width={500}
@@ -44,23 +64,27 @@ const ResisterPage = () => {
         </div>
         {/* create accout of top filled */}
         <div>
-          <div className="bg-gradient-to-r from-green-600 to-emerald-700 px-8 py-10 text-center rounded-t-2xl">
-            <h1 className="font-bold  text-white text-4xl ">
-              Create Your Account{" "}
+          <div className="bg-linear-to-r from-green-600 to-emerald-700 px-8 py-10 text-center rounded-t-2xl">
+            <h1 className="font-bold  text-white text-4xl flex items-center ">
+            <MdOutlineCreate />  Create Your Account{" "} 
             </h1>
-            <p className="font-semibold text-gray-300">Stay with Sportnest</p>
+            <p className="font-semibold text-gray-300 flex justify-center items-center gap-1">Stay with Sportnest <MdOutlineSportsCricket /></p>
           </div>
-          {/* actual form filled */}
+
+          {/* this is  actual form filled */}
+
           <Form
             className="flex w-118 border-2 rounded-b-3xl flex-col gap-4  "
-            onSubmit={onSubmit}
+            onSubmit={handleResister}
           >
             {/* name field */}
 
             <TextField isRequired name="name" type="text">
               <Label className="text-lg font-semibold">Name</Label>
+             
               <Input
-                placeholder="Enter Name "
+                
+                placeholder=" Enter Your Name "
                 className="
                   p-3 border-2 border-green-500
                  focus-within:border-green-500
@@ -102,7 +126,7 @@ const ResisterPage = () => {
             <TextField isRequired name="image" type="text">
               <Label className="text-lg font-semibold">Image Url</Label>
               <Input
-                placeholder="img url"
+                placeholder="https://..."
                 className="
                   p-3 border-2 border-green-500
                  focus-within:border-green-500
@@ -141,7 +165,7 @@ const ResisterPage = () => {
                  data-[focused=true]:border-green-500"
               >
                 <InputGroup.Input
-                  placeholder="Password"
+                  placeholder="Enter Strong Password"
                   className="w-full p-3  "
                   type={isVisible ? "text" : "password"}
                   //    value={isVisible ? "" : "Enter Password"}
@@ -166,23 +190,24 @@ const ResisterPage = () => {
 
             <div className="">
               <Button
-                className="bg-gradient-to-r from-green-600 to-emerald-700  w-full font-bold text-lg p-6"
+                className="bg-linear-to-r from-green-600 to-emerald-700  w-full font-bold text-lg p-6"
                 type="submit"
               >
-                <Check />
+                <MdOutlineCreate />
                 Create Account
+                
               </Button>
             </div>
           </Form>
           {/* Google login or login filled */}
           <div className=" text-center space-y-2 my-2">
             <p className="font-semibold text-gray-600">or continue with</p>
-            <button className=" font-bold text-lg w-full p-2 rounded-full border-2 border-gray-300 shadow-xl">
-              Continue with Google
+            <button className=" font-bold text-lg w-full p-2 rounded-full border-2 border-gray-300 shadow-xl flex justify-center items-center gap-1 ">
+             <FcGoogle /> Continue with Google
             </button>
             <h1 className="text-lg">
               Already have an account?{" "}
-              <span className="text-green-700 font-extrabold">Sign in</span>
+              <Link href={'/login'}><span className="text-green-700 font-extrabold">Sign in</span></Link>
             </h1>
           </div>
         </div>

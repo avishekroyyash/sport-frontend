@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import notFoundImg from "../../public/alert.jpg";
+import notFoundImg from "../../public/alert1.png";
 
 export default function NotFound() { 
   return (

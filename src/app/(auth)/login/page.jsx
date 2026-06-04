@@ -15,19 +15,36 @@ import { useState } from "react";
 import regpic from "../../../../public/register1.webp";
 import Image from "next/image";
 import React from "react";
+import Link from "next/link";
+import { GoSignIn } from "react-icons/go";
+import { FcGoogle } from "react-icons/fc";
+import { toast } from "react-toastify";
+import { authClient } from "@/lib/auth-client";
 
 const LoginPage = () => {
   const [isVisible, setIsVisible] = useState(false);
 
-  const onSubmit = (e) => {
+  const handleLogin =async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
+    const loginData = Object.fromEntries(formData.entries())
+    // console.log(loginData,'this is login data')
+    const { data, error } = await authClient.signIn.email({
+    email: loginData.email, // required
+    password: loginData.password, // required
+    rememberMe: true,
+    callbackURL: "/",
+});
+// console.log('DATA',data)
+// console.log('ERROR',error)
+if(error){
+  toast.error(`${error.message}`)
+}
+else{
+toast.success('Login is Successfully Complete')
+}
+  
 
-    // Convert FormData to plain object
-    formData.forEach((value, key) => {
-      data[key] = value.toString();
-    });
-    alert(`Form submitted with: ${JSON.stringify(data, null, 2)}`);
   };
 
   return (
@@ -36,7 +53,7 @@ const LoginPage = () => {
         {/* picture fiied */}
         <div>
           <Image
-            className="min-h-[650px] rounded-2xl"
+            className="min-h-162.5 rounded-2xl"
             src={regpic}
             alt="register-pic"
             width={500}
@@ -45,16 +62,16 @@ const LoginPage = () => {
         </div>
         {/* create accout of top filled */}
         <div>
-          <div className="bg-gradient-to-r from-green-600 to-emerald-700 px-8 py-10 text-center rounded-t-2xl">
-            <h1 className="font-bold  text-white text-4xl ">
-              Signup Your Account{" "}
+          <div className="bg-linear-to-r from-green-600 to-emerald-700 px-8 py-10 text-center rounded-t-2xl">
+            <h1 className="font-bold  text-white text-4xl flex justify-center items-center gap-1 ">
+              <GoSignIn />Sign in Your Account{" "}
             </h1>
             <p className="font-semibold text-gray-300">Stay with Sportnest</p>
           </div>
           {/* actual form filled */}
           <Form
             className="flex w-118 border-2 rounded-b-3xl flex-col gap-4 space-y-1  "
-            onSubmit={onSubmit}
+            onSubmit={handleLogin}
           >
             {/* Email field */}
 
@@ -131,6 +148,7 @@ const LoginPage = () => {
                   </Button>
                 </InputGroup.Suffix>
               </InputGroup>
+            
             </TextField>
 
             <div>
@@ -138,22 +156,22 @@ const LoginPage = () => {
                 className="bg-green-600 w-full font-bold text-lg p-6"
                 type="submit"
               >
-                <Check />
-                Sign in
+               
+                <GoSignIn /> Sign in
               </Button>
             </div>
           </Form>
           {/* Google login or login filled */}
           <div className=" text-center space-y-2 my-2">
             <p className="font-semibold text-gray-600">or continue with</p>
-            <button className=" font-bold text-lg w-full p-2 rounded-full border-2 border-gray-300 shadow-xl">
-              Continue with Google
+            <button className=" font-bold text-lg w-full p-2 rounded-full border-2 border-gray-300 shadow-xl flex justify-center items-center gap-1">
+             <FcGoogle /> Continue with Google
             </button>
             <h1 className="text-lg">
               Don't have an account?{" "}
-              <span className="text-green-700 font-extrabold">
+              <Link href={'/signup'}><span className="text-green-700 font-extrabold">
                 Resister free
-              </span>
+              </span></Link>
             </h1>
           </div>
         </div>
