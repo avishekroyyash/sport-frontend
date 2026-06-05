@@ -1,19 +1,30 @@
 "use client";
+import { useSession } from "@/lib/auth-client";
 import { Check } from "@gravity-ui/icons";
 import {Header, ListBox, Select, Separator,Button, Description,FieldError,Form,Input,Label,TextField, InputGroup, TextArea,
 } from "@heroui/react";
 import { useState } from "react";
+import { IoCreateOutline } from "react-icons/io5";
+import { RiUserAddLine } from "react-icons/ri";
 import { toast } from "react-toastify";
 
 
 const AddFacility = () => {
+  //get the user 
+   const {data} = useSession()
+   const user = data?.user
+  // console.log(user,'this is user of add facility price')
+
     const [isVisible, setIsVisible] = useState(false);
 
   const handleAddFacility =async(e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const addData = Object.fromEntries(formData.entries())
+    addData.pricePerHour = parseInt(addData.pricePerHour)
+    addData.capacity = parseInt(addData.capacity)
     addData.availableTimeSlots = addData.availableTimeSlots.split(',').map((item)=> item.trim());
+    addData.userEmail = user?.email 
     // console.log(addData,'this is add data from add-facility ')
     // add data into backend or mongodb with post method
     const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_API}/my-facility`,{
@@ -33,12 +44,12 @@ const AddFacility = () => {
   <div className="max-w-5xl mx-auto overflow-hidden rounded-3xl bg-white shadow-2xl">
 
     {/* Header */}
-    <div className="bg-linear-to-r from-green-600 to-emerald-700 px-8 py-12 text-center">
-      <h1 className="text-4xl font-bold text-white">
-        Add New Facility
+    <div className="bg-linear-to-r from-green-600 to-emerald-700 px-8 py-12 text-center ">
+      <h1 className="text-4xl font-bold text-white flex justify-center items-center gap-2">
+       <RiUserAddLine /> Add New Facility
       </h1>
-      <p className="mt-2 text-green-100">
-        Create and manage sports facilities on SportNest
+      <p className="mt-2 text-green-100 flex justify-center items-center gap-2">
+        Create and manage sports facilities on SportNest <IoCreateOutline />
       </p>
     </div>
 

@@ -7,7 +7,7 @@ import BookingForm from "@/Component/BookingForm";
 
 const BookingDetaisPage = async ({params}) => {
   const {id} = await params
-  console.log(id,'this is params id ')
+  // console.log(id,'this is params id ')
    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_API}/my-facility/${id}`)
    const Bdata = await res.json()
   //  console.log(Bdata)
@@ -68,7 +68,7 @@ const BookingDetaisPage = async ({params}) => {
 
       {/* ================= RIGHT SIDE FORM ================= */}
       <div>
-        <BookingForm></BookingForm>
+        <BookingForm Bdata={Bdata}></BookingForm>
       </div>
     </div>
   );

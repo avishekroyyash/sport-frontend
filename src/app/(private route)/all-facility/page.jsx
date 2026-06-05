@@ -6,7 +6,7 @@ const AllFacility = async() => {
     
     const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_API}/my-facility`)
     const allData = await res.json()
-    console.log(allData,'this is all facility data ')
+    // console.log(allData,'this is all facility data ')
     return (
         <div className='container mx-auto ' >
            

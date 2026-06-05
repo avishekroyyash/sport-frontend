@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 
 const Banner = () => {
@@ -25,13 +26,13 @@ const Banner = () => {
           {/* Buttons */}
           <div className='flex flex-col sm:flex-row gap-4 mt-8'>
 
-            <button className='bg-white text-green-800 font-bold px-7 py-3 rounded-full shadow-md hover:bg-green-100 transition'>
+           <Link href={'/all-facility'}> <button className='bg-white text-green-800 font-bold px-7 py-3 rounded-full shadow-md hover:bg-green-100 transition'>
               Explore Facilities
-            </button>
+            </button></Link>
 
-            <button className='bg-green-600 text-white font-bold px-7 py-3 rounded-full shadow-md hover:bg-green-700 transition'>
+           <Link href={'/add-facility'}> <button className='bg-green-600 text-white font-bold px-7 py-3 rounded-full shadow-md hover:bg-green-700 transition'>
               Add Facility
-            </button>
+            </button></Link>
 
           </div>
 

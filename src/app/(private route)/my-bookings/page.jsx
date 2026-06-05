@@ -2,16 +2,21 @@ import Image from "next/image";
 import React from "react";
 import testpic from "../../../../public/all-sport-element.jpg";
 
-const MyBookingsPage = () => {
+const MyBookingsPage = async() => {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_API}/my-booking`)
+  const allBookingData = await res.json()
+  console.log(allBookingData,'this is all booking data')
   return (
     <div className="container mx-auto p-4">
-      <div className="flex flex-col md:flex-row items-center gap-10 rounded-3xl border border-green-100 bg-white p-5 shadow-lg hover:shadow-xl border-2">
+     <div>
+      {
+        allBookingData.map((item,index) =>  <div key={index} className="flex flex-col md:flex-row items-center gap-10 rounded-3xl border-green-100 bg-white p-5 shadow-lg hover:shadow-xl border-2">
         
         {/* Image */}
         <div className="relative overflow-hidden rounded-2xl">
           <Image
-            src={testpic}
-            alt="Facility Image"
+            src={item.image}
+            alt={item.facilityName}
             width={220}
             height={180}
             className="h-[180px] w-[220px] object-cover"
@@ -25,10 +30,10 @@ const MyBookingsPage = () => {
           <div className="flex flex-col md:flex-row md:items-center md:justify-between">
             <div>
               <h1 className="text-2xl font-bold text-green-700">
-                Sylhet Sports Arena
+                {item.facilityName}
               </h1>
               <p className="text-sm text-gray-500">
-                Premium Indoor Sports Facility
+               {item.userName}
               </p>
             </div>
 
@@ -42,7 +47,7 @@ const MyBookingsPage = () => {
             <div className="rounded-xl bg-green-50 p-3">
               <p className="text-xs text-gray-500">Booking Date</p>
               <h2 className="font-semibold text-gray-800">
-                15 June 2026
+               {item.date}
               </h2>
             </div>
 
@@ -55,12 +60,12 @@ const MyBookingsPage = () => {
 
             <div className="rounded-xl bg-green-50 p-3">
               <p className="text-xs text-gray-500">Hours</p>
-              <h2 className="font-semibold text-gray-800">2 Hours</h2>
+              <h2 className="font-semibold text-gray-800">{item.hours} Hours</h2>
             </div>
 
             <div className="rounded-xl bg-green-50 p-3">
-              <p className="text-xs text-gray-500">Price</p>
-              <h2 className="font-semibold text-green-700">$40</h2>
+              <p className="text-xs text-gray-500">Total Price</p>
+              <h2 className="font-semibold text-green-700">${item.totalPrice}</h2>
             </div>
           </div>
 
@@ -78,7 +83,9 @@ const MyBookingsPage = () => {
             Delete Booking
           </button>
         </div>
-      </div>
+      </div>)
+      }
+     </div>
     </div>
   );
 };

@@ -1,9 +1,9 @@
 import Image from "next/image";
 import React from "react";
-import tespic1 from "../../../../public/all-sport-2.jpg";
 import { IoAdd } from "react-icons/io5";
 import Link from "next/link";
 import { DeleteModal } from "@/Component/DeleteModal";
+import { EditModal } from "@/Component/EditModal";
 const ManageFacilities = async () => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_API}/my-facility`);
   const allData = await res.json();
@@ -15,7 +15,7 @@ const ManageFacilities = async () => {
           <h1 className="text-3xl font-bold ">Manage My Facilities</h1>
           <p className="text-gray-500">Edit or Remove your listed Facilities</p>
         </div>
-        <Link href={'/all-facility'}><button className="bg-green-600 text-white px-3 py-1 rounded-2xl flex justify-center items-center gap-1 ">
+        <Link href={'/add-facility'}><button className="bg-green-600 text-white px-3 py-1 rounded-2xl flex justify-center items-center gap-1 ">
          <IoAdd /> Add New
         </button></Link>
       </div>
@@ -90,11 +90,9 @@ const ManageFacilities = async () => {
           </p>
 
             {/* Delete Button */}
-        <div className="flex gap-15">
+        <div className="flex gap-10">
           <div>
-            <button className="rounded-xl bg-green-100 px-5  py-3 font-bold ">
-              Edit
-            </button>
+           <EditModal item={item}></EditModal>
           </div>
           <div>
            <DeleteModal item={item}></DeleteModal>

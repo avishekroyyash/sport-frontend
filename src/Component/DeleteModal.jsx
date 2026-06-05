@@ -2,6 +2,7 @@
 
 import {AlertDialog, Button} from "@heroui/react";
 import { useRouter } from "next/navigation";
+import { MdDelete } from "react-icons/md";
 import { toast } from "react-toastify";
 
 export function DeleteModal({item}) {
@@ -30,7 +31,7 @@ const router = useRouter()
           <AlertDialog.Dialog className="sm:max-w-[400px]">
             <AlertDialog.CloseTrigger />
             <AlertDialog.Header>
-              <AlertDialog.Icon status="danger" />
+            <h1 className="bg-red-500 text-white rounded-full p-2 max-w-[30px]" ><MdDelete /></h1>
               <AlertDialog.Heading>Delete facility permanently?</AlertDialog.Heading>
             </AlertDialog.Header>
             <AlertDialog.Body>
