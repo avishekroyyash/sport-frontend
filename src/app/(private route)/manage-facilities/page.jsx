@@ -4,10 +4,20 @@ import { IoAdd } from "react-icons/io5";
 import Link from "next/link";
 import { DeleteModal } from "@/Component/DeleteModal";
 import { EditModal } from "@/Component/EditModal";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 const ManageFacilities = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_API}/my-facility`);
+  //this is user in server component 
+  const session = await auth.api.getSession({
+      headers: await headers() // you need to pass the headers object.
+  })
+   const user = session?.user
+     //console.log(user?.email,'this is id of user in my booking page')
+
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_API}/my-facility/email/${user?.email}`);
   const allData = await res.json();
-  // console.log(allData, "this is all facility data ");
+  console.log(allData, "this is all facility data ");
+
   return (
     <div className="container mx-auto p-4">
       <div className="flex justify-between mb-5">
@@ -42,7 +52,7 @@ const ManageFacilities = async () => {
                {item.facilityName}
               </h1>
               <p className="text-sm text-gray-500">
-                Premium Indoor Sports Facility
+                {item.userEmail}
               </p>
             </div>
           </div>

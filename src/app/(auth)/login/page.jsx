@@ -44,8 +44,13 @@ else{
 toast.success('Login is Successfully Complete')
 }
   
-
   };
+
+  const handleGoogleLogin = async () => {
+  const data = await authClient.signIn.social({
+    provider: "google",
+  });
+};
 
   return (
     <div className="my-5  container mx-auto">
@@ -164,7 +169,7 @@ toast.success('Login is Successfully Complete')
           {/* Google login or login filled */}
           <div className=" text-center space-y-2 my-2">
             <p className="font-semibold text-gray-600">or continue with</p>
-            <button className=" font-bold text-lg w-full p-2 rounded-full border-2 border-gray-300 shadow-xl flex justify-center items-center gap-1">
+            <button onClick={handleGoogleLogin} className=" font-bold text-lg w-full p-2 rounded-full border-2 border-gray-300 shadow-xl flex justify-center items-center gap-1">
              <FcGoogle /> Continue with Google
             </button>
             <h1 className="text-lg">

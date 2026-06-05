@@ -17,7 +17,7 @@ const FacilityCard6 = async() => {
       fdata.map((item,index)=>  <div key={index} className=" group overflow-hidden rounded-3xl bg-white shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
       
       {/* Image */}
-      <div className="overflow-hidden">
+      <div className="overflow-hidden  max-w-[500px] max-h-[300px]">
         <Image
           src={item.image}
           alt="Facility"
@@ -25,7 +25,7 @@ const FacilityCard6 = async() => {
           height={300}
           className=""
         />
-      </div>
+      </div> 
 
       {/* Content */}
       <div className="p-5 space-y-4">

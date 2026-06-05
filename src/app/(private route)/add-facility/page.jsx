@@ -3,6 +3,7 @@ import { useSession } from "@/lib/auth-client";
 import { Check } from "@gravity-ui/icons";
 import {Header, ListBox, Select, Separator,Button, Description,FieldError,Form,Input,Label,TextField, InputGroup, TextArea,
 } from "@heroui/react";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { IoCreateOutline } from "react-icons/io5";
 import { RiUserAddLine } from "react-icons/ri";
@@ -10,6 +11,7 @@ import { toast } from "react-toastify";
 
 
 const AddFacility = () => {
+  const router = useRouter()
   //get the user 
    const {data} = useSession()
    const user = data?.user
@@ -25,6 +27,7 @@ const AddFacility = () => {
     addData.capacity = parseInt(addData.capacity)
     addData.availableTimeSlots = addData.availableTimeSlots.split(',').map((item)=> item.trim());
     addData.userEmail = user?.email 
+    
     // console.log(addData,'this is add data from add-facility ')
     // add data into backend or mongodb with post method
     const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_API}/my-facility`,{
@@ -37,6 +40,7 @@ const AddFacility = () => {
     const postData = await res.json()
     toast.success('Add new facility Succesfully')
     // console.log(postData,'this is post data from add facility-page')
+    router.push('/all-facility')
   };
  
     return (

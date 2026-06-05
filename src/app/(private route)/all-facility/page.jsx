@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from "next/image";
 import Link from 'next/link';
+ import {Label, SearchField} from "@heroui/react";
 
 const AllFacility = async() => {
     
@@ -9,13 +10,28 @@ const AllFacility = async() => {
     // console.log(allData,'this is all facility data ')
     return (
         <div className='container mx-auto ' >
+        {/* Add search implementation */}
+
+    <div className="w-2xl mx-auto  my-5 p-5 ">
+      <SearchField fullWidth  name="search">
+        <SearchField.Group className=' rounded-4xl  p-7 border-2 border-green-500
+                      focus-within:border-green-500
+                      focus-within:ring-green-500
+                      data-[focused=true]:border-green-500'>
+          <SearchField.SearchIcon />
+          <SearchField.Input placeholder="Search..." />
+          <SearchField.ClearButton />
+        </SearchField.Group>
+      </SearchField>
+    </div>
+ 
            
            <div className='grid grid-cols-3 gap-10 '>
             {
                 allData.map((item,index)=>  <div key={index} className="group overflow-hidden rounded-3xl bg-white shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
       
       {/* Image */}
-      <div className="overflow-hidden max-w-[500px] max-h-[300px]">
+      <div className="overflow-hidden max-w-125 max-h-75">
         <Image
           src={item.image}
           alt="Facility"
