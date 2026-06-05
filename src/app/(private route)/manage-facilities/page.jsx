@@ -14,9 +14,22 @@ const ManageFacilities = async () => {
    const user = session?.user
      //console.log(user?.email,'this is id of user in my booking page')
 
-  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_API}/my-facility/email/${user?.email}`);
+
+     //get token of server component 
+   const token = await auth.api.getToken({
+    headers: await headers()
+   })
+  
+  //  console.log(token,'this is token ')
+
+
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_API}/my-facility/email/${user?.email}`,{
+    headers:{
+      'authorization': `Bearer ${token?.token}`
+    }
+  });
   const allData = await res.json();
-  console.log(allData, "this is all facility data ");
+  // console.log(allData, "this is all facility data ");
 
   return (
     <div className="container mx-auto p-4">

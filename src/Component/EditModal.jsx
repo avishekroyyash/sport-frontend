@@ -7,6 +7,7 @@ import {Button, Input, Label, Modal, Surface, TextField} from "@heroui/react";
 import { FiEdit } from "react-icons/fi";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import { authClient } from "@/lib/auth-client";
 
 export function EditModal({item}) {
 
@@ -18,14 +19,23 @@ const id = item._id
 e.preventDefault()
 const formData = new FormData(e.currentTarget)
 const editData = Object.fromEntries(formData.entries())
+
  editData.pricePerHour = parseInt(editData.pricePerHour)
  editData.capacity = parseInt(editData.capacity)
 editData.availableTimeSlots = editData.availableTimeSlots.split(',').map((item)=> item.trim())
 // console.log(editData,'this is edit data ')
+
+ // get token in client side 
+      const {data:session} = await authClient.token()
+      // console.log(session.token,'this is session data')
+
+
+
 const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_API}/my-facility/${id}`,{
     method:'PATCH',
     headers:{
-        'content-type' : 'application/json'
+        'content-type' : 'application/json',
+        'authorization' : `Bearer ${session?.token}`
     },
     body: JSON.stringify(editData)
 })

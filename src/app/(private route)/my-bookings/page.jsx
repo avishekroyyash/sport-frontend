@@ -4,14 +4,29 @@ import { DeleteBooking } from "@/Component/DeleteBooking";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 
+
 const MyBookingsPage = async() => {
+
+
   //since it is server component so 
   const session = await auth.api.getSession({
     headers: await headers() // you need to pass the headers object.
 })
  const user = session?.user
   // console.log(user.id,'this is id of user in my booking page')
-  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_API}/my-booking/${user?.id}`)
+
+
+
+  // get server token for verification
+const token = await auth.api.getToken({
+  headers: await headers()
+})
+
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_API}/my-booking/${user?.id}`,{
+  headers:{
+    'authorization' : `Bearar ${token?.token}`
+  }
+  })
   const allBookingData = await res.json()
   // console.log(allBookingData,'this is all booking data')
   return (

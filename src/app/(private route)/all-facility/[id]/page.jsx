@@ -4,11 +4,28 @@ import Image from "next/image";
 
 import React from "react";
 import BookingForm from "@/Component/BookingForm";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 
 const BookingDetaisPage = async ({params}) => {
   const {id} = await params
   // console.log(id,'this is params id ')
-   const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_API}/my-facility/${id}`)
+  
+  //get token from server when user login 
+
+ const token = await auth.api.getToken({
+    headers: await headers() // you need to pass the headers object.
+})
+  // console.log(token.token,'this is token from boking detais page ')
+
+
+
+  //fetch the data using id wise
+   const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_API}/my-facility/${id}`,{
+    headers:{
+      'Authorization' : `Bearer ${token?.token}`
+    }
+   })
    const Bdata = await res.json()
   //  console.log(Bdata)
   return (

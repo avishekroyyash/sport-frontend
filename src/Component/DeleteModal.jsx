@@ -1,5 +1,6 @@
 "use client";
 
+import { authClient } from "@/lib/auth-client";
 import {AlertDialog, Button} from "@heroui/react";
 import { useRouter } from "next/navigation";
 import { MdDelete } from "react-icons/md";
@@ -9,6 +10,9 @@ export function DeleteModal({item}) {
 //  console.log(item,'this is all item from delete page ')
 const router = useRouter()
     const handleDelete =async()=>{
+    
+     
+ 
         const id = item._id
         // console.log(id,'this is single of onclick delete')
         const res =await fetch(`${process.env.NEXT_PUBLIC_SERVER_API}/my-facility/${id}`,{
