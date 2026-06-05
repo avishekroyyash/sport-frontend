@@ -9,11 +9,11 @@ import Link from "next/link";
 import { signOut } from "@/lib/auth-client";
 
 export function NavberDropDrown({user}) {
-  // console.log(user,'this is user from navberdropdown box')
+ 
   return (
     <Dropdown>
       <Button aria-label="Menu" variant="" className='flex justify-center items-center'>
-        <Image className="rounded-full bg-green-600 max-w-[45px] max-h-[45px]  " src={user.image} alt={user.name[1]} width={40} height={40}></Image>
+        <Image className="rounded-full bg-green-600 max-w-11.25 max-h-11.25 " src={user.image} alt={user.name[1]} width={40} height={40}></Image>
         <h1 className=" bg-linear-to-r from-green-600 to-emerald-700 text-center p-3 rounded-r-2xl font-semibold text-white px-10 ">{user.name}</h1>
       </Button>
       <Dropdown.Popover className=' border-2 border-green-600 my-3 ml-10'>

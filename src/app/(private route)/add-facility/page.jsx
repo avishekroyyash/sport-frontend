@@ -3,18 +3,31 @@ import { Check } from "@gravity-ui/icons";
 import {Header, ListBox, Select, Separator,Button, Description,FieldError,Form,Input,Label,TextField, InputGroup, TextArea,
 } from "@heroui/react";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 
 const AddFacility = () => {
     const [isVisible, setIsVisible] = useState(false);
 
-  const handleAddFacility = (e) => {
+  const handleAddFacility =async(e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const addData = Object.fromEntries(formData.entries())
-    console.log(addData,'this is add data from add-facility ')
+    addData.availableTimeSlots = addData.availableTimeSlots.split(',').map((item)=> item.trim());
+    // console.log(addData,'this is add data from add-facility ')
+    // add data into backend or mongodb with post method
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_API}/my-facility`,{
+      method:'POST',
+      headers:{
+        'content-type' : 'application/json'
+      },
+      body:JSON.stringify(addData)
+    })
+    const postData = await res.json()
+    toast.success('Add new facility Succesfully')
+    // console.log(postData,'this is post data from add facility-page')
   };
-
+ 
     return (
       <div className="container mx-auto px-4 py-10">
   <div className="max-w-5xl mx-auto overflow-hidden rounded-3xl bg-white shadow-2xl">
