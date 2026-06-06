@@ -2,29 +2,31 @@ import React from 'react';
 import Image from "next/image";
 import Link from 'next/link';
  import {Label, SearchField} from "@heroui/react";
+import Search from '@/Component/Search';
+import Filter from '@/Component/Filter';
 
-const AllFacility = async() => {
-    
-    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_API}/my-facility`)
+const AllFacility = async({searchParams}) => {
+     
+  const sparam = await searchParams
+const search = sparam?.search?.trim() || ''
+
+const res = await fetch(
+  `${process.env.NEXT_PUBLIC_SERVER_API}/my-facility${search ? `?search=${encodeURIComponent(search)}` : ''}`
+)
     const allData = await res.json()
-    // console.log(allData,'this is all facility data ')
+    //  console.log(allData,'this is all facility data ')
     return (
         <div className='container mx-auto ' >
         {/* Add search implementation */}
+        <h1 className="my-3 text-center text-5xl font-bold">
+    All Facilities
+  </h1>
 
-    <div className="w-2xl mx-auto  my-5 p-5 ">
-      <SearchField fullWidth  name="search">
-        <SearchField.Group className=' rounded-4xl  p-7 border-2 border-green-500
-                      focus-within:border-green-500
-                      focus-within:ring-green-500
-                      data-[focused=true]:border-green-500'>
-          <SearchField.SearchIcon />
-          <SearchField.Input placeholder="Search..." />
-          <SearchField.ClearButton />
-        </SearchField.Group>
-      </SearchField>
-    </div>
- 
+  <p className="mb-6 text-center text-gray-500">
+    Discover and book the perfect sports facility for your game.
+  </p>
+        <Search></Search>
+        {/* <Filter></Filter> */}
            
            <div className='grid grid-cols-3 gap-10 '>
             {
