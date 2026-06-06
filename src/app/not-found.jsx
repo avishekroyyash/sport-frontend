@@ -2,6 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 import notFoundImg from "../../public/alert1.png";
 
+export const metadata = {
+  title: "Not Found page",
+  description: "This is the sportnest not found page",
+};
+
 export default function NotFound() { 
   return (
     <div className="min-h-screen container mx-auto  flex items-center justify-center bg-green-50 px-4">

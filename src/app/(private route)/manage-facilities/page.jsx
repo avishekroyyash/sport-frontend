@@ -6,6 +6,14 @@ import { DeleteModal } from "@/Component/DeleteModal";
 import { EditModal } from "@/Component/EditModal";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
+
+
+export const metadata = {
+  title: "Manage facility",
+  description: "This is the sportnest user Manage facility page",
+};
+
+
 const ManageFacilities = async () => {
   //this is user in server component 
   const session = await auth.api.getSession({

@@ -2,7 +2,14 @@ import React from 'react';
 import Image from "next/image";
 import Link from 'next/link';
 import Search from '@/Component/Search';
-import Filter from '@/Component/Filter';
+// import Filter from '@/Component/Filter';
+
+export const metadata = {
+  title: "All facility",
+  description: "This is the sportnest booking all facility page",
+};
+
+
 
 const AllFacility = async({searchParams}) => {
      

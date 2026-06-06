@@ -4,6 +4,10 @@ import { DeleteBooking } from "@/Component/DeleteBooking";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 
+export const metadata = {
+  title: "My Booking facility",
+  description: "This is the sportnest my booking page",
+};
 
 const MyBookingsPage = async() => {
 
