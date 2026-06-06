@@ -17,7 +17,7 @@ export function NavberDropDrown({ user }) {
         className="flex items-center justify-center gap-2 px-0"
       >
         <Image
-          className="rounded-full bg-green-600 w-10 h-10 md:w-11 md:h-11"
+          className="rounded-full bg-green-600 w-7 h-9 md:w-11 md:h-11"
           src={user.image}
           alt={user?.name || "User"}
           width={44}
@@ -30,8 +30,10 @@ export function NavberDropDrown({ user }) {
             from-green-600
             to-emerald-700
             text-center
-            py-2
-            px-3
+            py-1
+            md:py-2
+            lg:py-2
+            px-1
             md:px-6
             lg:px-10
             rounded-r-2xl
@@ -39,7 +41,7 @@ export function NavberDropDrown({ user }) {
             text-white
             text-sm
             md:text-base
-            max-w-[120px]
+            max-w-[60px]
             md:max-w-[180px]
             lg:max-w-none
             truncate

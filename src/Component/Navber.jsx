@@ -86,46 +86,66 @@ const Navber = () => {
                   </h1>
                 </div>
                 
-                 <div className="flex items-center gap-3 sm:gap-5 md:gap-8">
-              <Link
-                href="/"
-                className="text-sm md:text-base font-medium text-gray-700 hover:text-green-700"
-              >
-                Home
-              </Link>
-
-              <Link
-                href="/all-facility"
-                className="text-sm md:text-base font-medium text-gray-700 hover:text-green-700"
-              >
-                All Facilities
-              </Link>
-            </div>
+                
                 {/* Navigation */}
-                <nav className="hidden lg:flex items-center gap-4 xl:gap-6">
-                  
+               {/* Small & Medium Screen Navigation */}
+               {/* 
+                className="flex items-center gap-3 sm:gap-5 md:gap-8"
+                 className="text-sm md:text-base font-medium text-gray-700 hover:text-green-700"
+               */}
+<nav className="flex lg:hidden items-center gap-4">
+  <Link
+    href="/"
+    className="text-sm text-gray-700 font-medium hover:text-green-700 transition"
+  >
+    Home
+  </Link>
 
-                  <Link
-                    href="/my-bookings"
-                    className="text-sm xl:text-base text-gray-700 font-medium hover:text-green-700 transition"
-                  >
-                    My Bookings
-                  </Link>
+  <Link
+    href="/all-facility"
+    className="text-sm text-gray-700 font-medium hover:text-green-700 transition"
+  >
+    All Facilities
+  </Link>
+</nav>
 
-                  <Link
-                    href="/add-facility"
-                    className="text-sm xl:text-base text-gray-700 font-medium hover:text-green-700 transition"
-                  >
-                    Add Facility
-                  </Link>
+{/* Large Screen Navigation */}
+<nav className="hidden lg:flex items-center gap-4 xl:gap-6">
+  <Link
+    href="/"
+    className="text-sm xl:text-base text-gray-700 font-medium hover:text-green-700 transition"
+  >
+    Home
+  </Link>
 
-                  <Link
-                    href="/manage-facilities"
-                    className="text-sm xl:text-base text-gray-700 font-medium hover:text-green-700 transition"
-                  >
-                    Manage Facilities
-                  </Link>
-                </nav>
+  <Link
+    href="/all-facility"
+    className="text-sm xl:text-base text-gray-700 font-medium hover:text-green-700 transition"
+  >
+    All Facilities
+  </Link>
+
+  <Link
+    href="/my-bookings"
+    className="text-sm xl:text-base text-gray-700 font-medium hover:text-green-700 transition"
+  >
+    My Bookings
+  </Link>
+
+  <Link
+    href="/add-facility"
+    className="text-sm xl:text-base text-gray-700 font-medium hover:text-green-700 transition"
+  >
+    Add Facility
+  </Link>
+
+  <Link
+    href="/manage-facilities"
+    className="text-sm xl:text-base text-gray-700 font-medium hover:text-green-700 transition"
+  >
+    Manage Facilities
+  </Link>
+</nav>
 
                 {/* User Dropdown */}
                 <div className="flex items-center gap-4">
